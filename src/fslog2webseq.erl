@@ -85,7 +85,9 @@ catch_callid(_, State) ->
 set_call_id(CallId, #state{a = undefined} = State) ->
     State#state{a = CallId};
 set_call_id(CallId, #state{b = undefined} = State) ->
-    State#state{b = CallId}.
+    State#state{b = CallId};
+set_call_id(_, State) ->
+    State.
 
 catch_header(Line, #state{now = wip, message = undefined} = State) ->
     case binary:match(Line, <<"SIP/2.0">>) of
