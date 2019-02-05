@@ -75,7 +75,7 @@ last_delim(_, State) ->
     State.
 
 catch_callid(Line, #state{now = wip} = State) ->
-    case re:run(Line, <<"\s*Call-ID:\s*([\\S]+)">>, [{'capture', [1], 'binary'}]) of
+    case re:run(Line, <<"\s*(Call-ID|i):\s*([\\S]+)">>, [{'capture', [2], 'binary'}]) of
         {match, [CallId]} -> set_call_id(CallId, State);
         nomatch -> State
     end;
